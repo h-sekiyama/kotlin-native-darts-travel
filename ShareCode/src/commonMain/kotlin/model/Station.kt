@@ -1,5 +1,6 @@
 package model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -9,44 +10,44 @@ data class Station(
 
 @Serializable
 data class Results(
-    val api_version: String,
-    val results_available: Int,
-    val results_returned: Int,
-    val results_start: Int,
-    val station: List<StationX>
+    @SerialName("api_version") val api_version: String,
+    @SerialName("results_available") val results_available: Int,
+    @SerialName("results_returned") val results_returned: Int,
+    @SerialName("results_start") val results_start: Int,
+    @SerialName("station") val station: List<StationX>
 )
 
 @Serializable
 data class StationX(
-    val along: Along,
-    val city: City,
-    val code: String,
-    val facility_cd: String,
-    val name: String,
-    val prefecture: Prefecture
+    @SerialName("along") val along: Along,
+    @SerialName("city") val city: City,
+    @SerialName("code") val code: String,
+    @SerialName("facility_cd") val facility_cd: String,
+    @SerialName("name") val name: String,
+    @SerialName("prefecture") val prefecture: Prefecture
 )
 
 @Serializable
 data class Along(
-    val along_type: AlongType,
-    val code: String,
-    val name: String
+    @SerialName("along_type") val along_type: AlongType,
+    @SerialName("code") val code: String,
+    @SerialName("name") val name: String
 )
 
 @Serializable
 data class AlongType(
-    val code: String,
-    val name: String
+    @SerialName("code") val code: String,
+    @SerialName("name") val name: String
 )
 
 @Serializable
 data class City(
-    val code: String,
-    val name: String
+    @SerialName("code") val code: String,
+    @SerialName("name") val name: String
 )
 
 @Serializable
 data class Prefecture(
-    val code: String,
-    val name: String
+    @SerialName("code") val code: String,
+    @SerialName("name") val name: String
 )

@@ -1,5 +1,6 @@
 apply plugin: "kotlin-multiplatform"
 apply plugin: "kotlinx-serialization"
+apply plugin: 'kotlin-android-extensions'
 
 kotlin {
     targets {
@@ -19,6 +20,9 @@ kotlin {
             api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
             api "io.ktor:ktor-client-core:$ktor_version"
             api "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0"
+            api "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha02"
+            api 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+            api "com.squareup.okhttp3:okhttp:3.14.1"
         }
         androidMain.dependencies {
             api "org.jetbrains.kotlin:kotlin-stdlib"

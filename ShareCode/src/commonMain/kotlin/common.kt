@@ -1,5 +1,8 @@
+import com.github.kitwtnb.kotlinnativetutorial.model.api.ApiClient
 import io.ktor.client.HttpClient
+import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
+import io.ktor.client.request.request
 import io.ktor.http.ContentType.Application.Json
 import model.Results
 import model.Station
@@ -12,20 +15,26 @@ fun createApplicationScreenMessage(): String {
     return "ちんちん ${platformName()}"
 }
 
+@ImplicitReflectionSerializer
 suspend fun sequentialRequests() :String {
     val client = HttpClient()
 
-    // Get the content of an URL.
-    val firstBytes = client.get<ByteArray>("https://webservice.recruit.co.jp/manabi/station/v2?prefecture=13&key=3e2b4a21beb30b57&format=json&start=0")
+    val firstBytes = client.get<Station>("https://webservice.recruit.co.jp/manabi/station/v2?prefecture=13&key=3e2b4a21beb30b57&format=json&start=0")
 
-    // Once the previous request is done, get the content of an URL.
-    val secondBytes = client.get<ByteArray>("https://127.0.0.1:8080/b")
-
-    // parsing data back
-    val obj = JSON.parse(Station.serializer(), """{"a":42}""")
-    println(obj) // MyModel(a=42, b="42")
+    val secondBytes = JSON.stringify(firstBytes);
+    val obj = JSON.parse(Station.serializer(), secondBytes)
 
     client.close()
 
+//
+//    val client = OkHttpClient()
+//    val request = Request.Builder()
+//        .url("https://api.cryptowat.ch/markets/coinbase-pro/btcusd/ohlc")
+//        .build()
+//    val response= client.newCall(request).execute()
+//    println(response.body())
+
     return obj.results.api_version
+
+//    return "unko"
 }
