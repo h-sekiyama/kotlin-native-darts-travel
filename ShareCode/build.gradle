@@ -1,4 +1,6 @@
 apply plugin: "kotlin-multiplatform"
+apply plugin: "kotlinx-serialization"
+
 kotlin {
     targets {
         final def iOSTarget = System.getenv("SDK_NAME")?.startsWith("iphoneos") ? presets.iosArm64 : presets.iosX64
@@ -17,9 +19,6 @@ kotlin {
             api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
             api "io.ktor:ktor-client-core:$ktor_version"
             api "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0"
-            implementation("com.squareup.moshi:moshi:1.8.0")
-            api 'com.squareup.moshi:moshi-kotlin:1.5.0'
-            api "com.squareup.moshi:moshi-adapters:1.8.0"
         }
         androidMain.dependencies {
             api "org.jetbrains.kotlin:kotlin-stdlib"
