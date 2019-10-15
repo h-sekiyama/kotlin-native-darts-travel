@@ -1,3 +1,4 @@
+apply plugin: 'java'
 apply plugin: "kotlin-multiplatform"
 apply plugin: "kotlinx-serialization"
 apply plugin: 'kotlin-android-extensions'
@@ -13,16 +14,13 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api "org.jetbrains.kotlin:kotlin-stdlib-common"
-            api 'com.fasterxml.jackson.core:jackson-databind:2.9.6'
-            api 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.6'
             api "io.ktor:ktor-client-android:$ktor_version"
-            api "io.ktor:ktor-client-gson:$ktor_version"
+            api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
             api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
             api "io.ktor:ktor-client-core:$ktor_version"
+            api "io.ktor:ktor-client-gson:$ktor_version"
             api "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0"
             api "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha02"
-            api 'com.squareup.okhttp3:logging-interceptor:3.9.1'
-            api "com.squareup.okhttp3:okhttp:3.14.1"
         }
         androidMain.dependencies {
             api "org.jetbrains.kotlin:kotlin-stdlib"
